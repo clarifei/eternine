@@ -22,9 +22,9 @@ impl ColorDetector {
             let g = data[i + 1];
             let b = data[i + 2];
 
-            if r.abs_diff(target_r) <= 95 &&
-               g.abs_diff(target_g) <= 95 &&
-               b.abs_diff(target_b) <= 95 {
+            if r.abs_diff(target_r) <= 65 &&
+               g.abs_diff(target_g) <= 65 &&
+               b.abs_diff(target_b) <= 65 {
                 return Ok(Some(()));
             }
         }
