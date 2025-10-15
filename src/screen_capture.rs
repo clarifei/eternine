@@ -20,7 +20,7 @@ impl ScreenCapture {
 
         let monitor = monitors.into_iter().next().unwrap();
 
-        let region_size = (8, 8);
+        let region_size = (4, 4);
 
         let width = monitor.width()?;
         let height = monitor.height()?;
@@ -61,10 +61,11 @@ impl ScreenCapture {
 
         let mut rgb_index = 0;
         for chunk in bgra_data.chunks_exact(4) {
-
-            rgb_data[rgb_index] = chunk[0];
-            rgb_data[rgb_index + 1] = chunk[1];
-            rgb_data[rgb_index + 2] = chunk[2];
+            unsafe {
+                *rgb_data.get_unchecked_mut(rgb_index) = *chunk.get_unchecked(0);
+                *rgb_data.get_unchecked_mut(rgb_index + 1) = *chunk.get_unchecked(1);
+                *rgb_data.get_unchecked_mut(rgb_index + 2) = *chunk.get_unchecked(2);
+            }
             rgb_index += 3;
         }
 
