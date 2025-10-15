@@ -616,6 +616,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "image",
+ "rand 0.9.2",
  "tokio",
  "windows 0.62.2",
  "xcap",
